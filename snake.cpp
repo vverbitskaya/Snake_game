@@ -35,19 +35,23 @@ Snake::Snake(position h) {
 }
 
 void Snake::makeStep() {
-		if (dir==up) {
+	switch (dir) {
+		case up:
 			head.y -= 1;
-		}
-		else if (dir == down) {
+			break;
+		case down:
 			head.y += 1;
-		}
-		else if (dir == left) {
+			break;
+		case left:
 			head.x -= 1;
-		}
-		else {
+			break;
+		case right:
 			head.x += 1;
-		}
-	};
+			break;
+		default:
+			break;
+	}
+};
 
 void Snake::changeDir(direction d) {
 		dir = d;
