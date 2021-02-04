@@ -1,0 +1,40 @@
+sudo: required
+before_install:
+  - sudo apt-get install build-essential
+  - sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+  
+# Enable C++ support
+language: cpp
+
+# Compiler selection
+compiler:
+  - gcc
+  
+install:
+  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
+  - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
+  
+  - |
+    if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
+      CMAKE_URL="http://www.cmake.org/files/v3.3/cmake-3.3.2-Linux-x86_64.tar.gz"
+      mkdir cmake && travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
+      export PATH=${DEPS_DIR}/cmake/bin:${PATH}
+    fi
+# Go to the Root directory  
+  - cd ..
+# Build steps
+script:
+  - echo "build googletest"
+  - git clone https://github.com/google/googletest.git googletest
+  - cd googletest
+  - mkdir build
+  - cd build
+  - cmake .. && make
+  - sudo make install
+  - cd ../../
+  - echo "build snake game"
+  - mkdir build
+  - cd build
+  - cmake .. && make
+  - ./snake_tests
+after_success:
