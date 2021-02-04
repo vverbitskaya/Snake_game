@@ -32,7 +32,7 @@ private:
 	direction dir;
 
 public:
-	void makeStep();
+	void makeStep(bool withGrow);
 
 	void changeDir(direction d);
 

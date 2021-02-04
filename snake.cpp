@@ -34,7 +34,10 @@ Snake::Snake(position h) {
 	head.y = h.y;
 }
 
-void Snake::makeStep() {
+void Snake::makeStep(bool withGrow) {
+	position newElement = head;
+	body.push_back(newElement);
+
 	switch (dir) {
 		case up:
 			head.y -= 1;
@@ -51,6 +54,10 @@ void Snake::makeStep() {
 		default:
 			break;
 	}
+	if (withGrow != true) {
+		body.pop_front();
+	}
+
 };
 
 void Snake::changeDir(direction d) {

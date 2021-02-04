@@ -17,7 +17,7 @@ TEST(SnakeTests, SnakeGoRightTest) {
 	pos.y = 45;
 	Snake s(pos);
 	s.changeDir(direction::right);
-	s.makeStep();
+	s.makeStep(false);
 	position newPos;
 	newPos.x = 31;
 	newPos.y = 45;
@@ -32,7 +32,7 @@ TEST(SnakeTests, SnakeGoLeftTest) {
 	pos.y = 45;
 	Snake s(pos);
 	s.changeDir(direction::left);
-	s.makeStep();
+	s.makeStep(false);
 	position newPos;
 	newPos.x = 29;
 	newPos.y = 45;
@@ -47,7 +47,7 @@ TEST(SnakeTests, SnakeGoUpTest) {
 	pos.y = 45;
 	Snake s(pos);
 	s.changeDir(direction::up);
-	s.makeStep();
+	s.makeStep(false);
 	position newPos;
 	newPos.x = 30;
 	newPos.y = 44;
@@ -62,7 +62,7 @@ TEST(SnakeTests, SnakeGoDownTest) {
 	pos.y = 45;
 	Snake s(pos);
 	s.changeDir(direction::down);
-	s.makeStep();
+	s.makeStep(false);
 	position newPos;
 	newPos.x = 30;
 	newPos.y = 46;

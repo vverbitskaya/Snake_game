@@ -23,7 +23,8 @@ int main () {
 	Snake s;
 	displaySnake(s);
 	for (int i = 0; i <= 10; i++) {
-		s.makeStep();
+		bool b = false;
+		s.makeStep(b);
 		displaySnake(s);
 		std::getchar();
 	}
