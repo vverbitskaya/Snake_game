@@ -1,0 +1,27 @@
+sudo: required
+before_install:
+  - sudo apt-get install build-essential
+  - sudo apt-get install cmake git
+# Enable C++ support
+language: cpp
+
+# Compiler selection
+compiler:
+  - gcc
+
+# Build steps
+script:
+  - echo "build googletest"
+  - git clone https://github.com/google/googletest.git googletest
+  - cd googletest
+  - mkdir build
+  - cd build
+  - cmake .. && make
+  - sudo make install
+  - cd ../../
+  - echo "build snake game"
+  - mkdir build
+  - cd build
+  - cmake .. && make
+  - ./snake_tests
+after_success:
