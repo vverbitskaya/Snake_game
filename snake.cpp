@@ -68,5 +68,11 @@ bool Snake::areYouHere(position p) const{
 		if (head.x == p.x && head.y == p.y) {
 			return true;
 		}
+		for (int counter = 0; counter < body.size(); counter++) {
+			position temp = body[counter];
+			if (temp.x == p.x && temp.y == p.y) {
+				return true;
+			}
+		}
 		return false;
 	}
