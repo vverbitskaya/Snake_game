@@ -37,4 +37,8 @@ public:
 	void changeDir(direction d);
 
 	bool areYouHere(position p) const;
+
+	bool isHeadHere(position p) const;
+
+	bool isBodyHere(position p) const;
 };

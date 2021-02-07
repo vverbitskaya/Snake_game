@@ -65,14 +65,28 @@ void Snake::changeDir(direction d) {
 	}
 
 bool Snake::areYouHere(position p) const{
-		if (head.x == p.x && head.y == p.y) {
+		if (isHeadHere(p) || isBodyHere(p)) {
 			return true;
 		}
-		for (int counter = 0; counter < body.size(); counter++) {
-			position temp = body[counter];
-			if (temp.x == p.x && temp.y == p.y) {
-				return true;
-			}
-		}
+
 		return false;
 	}
+
+bool Snake::isHeadHere(position p) const {
+	if (head.x == p.x && head.y == p.y) {
+		return true;
+	}
+	return false;
+}
+
+bool Snake::isBodyHere(position p) const {
+	for (int counter = 0; counter < body.size(); counter++) {
+		position temp = body[counter];
+		if (temp.x == p.x && temp.y == p.y) {
+			return true;
+		}
+	}
+	return false;
+}
+
+
