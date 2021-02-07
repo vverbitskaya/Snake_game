@@ -18,6 +18,14 @@ private:
 	int value;
 };
 
+class AppleGenerator {
+	int maxWidth = 50;
+	int maxHeight = 50;
+public:
+	AppleGenerator(int w, int h);
+	Apple create();
+};
+
 enum direction {
 	up, down, left, right
 };

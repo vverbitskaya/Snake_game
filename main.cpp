@@ -2,17 +2,22 @@
 #include <thread>
 #include <conio.h>
 
-void displaySnake(const Snake& s) {
+void displaySnake(const Snake& s, Apple& a) {
 	for (int y = 0; y <= 20; y++) {
 		for (int x = 0; x <= 200; x++) {
 			position posit;
 			posit.x = x;
 			posit.y = y;
+
+			position applePosit = a.GetPosition();
 			if (s.isHeadHere(posit) == true) {
 				std::cout << "X";
 			}
 			else if (s.isBodyHere(posit) == true) {
 				std::cout << "o";
+			}
+			else if (applePosit.x == posit.x && applePosit.y == posit.y) {
+				std::cout << "A";
 			}
 			else {
 				std::cout << " ";
@@ -42,16 +47,20 @@ void userInput() {
 }
 
 int main () {
-		std::cout << "Hello" << std::endl;
-		std::thread thr(&userInput);
+	AppleGenerator g(20, 25);
+	Apple a = g.create();
+
+	std::cout << "Hello" << std::endl;
+	std::thread thr(&userInput);
 	Snake s;
-	displaySnake(s);
+	displaySnake(s, a);
 	while (true) {
 		bool b = true;
 		s.changeDir(dir);
 		s.makeStep(b);
-		displaySnake(s);
+		displaySnake(s, a);
 		std::this_thread::sleep_for(std::chrono::milliseconds(500));
+		a = g.create();
 	}
 
 	userInput();

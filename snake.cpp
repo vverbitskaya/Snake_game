@@ -60,6 +60,21 @@ void Snake::makeStep(bool withGrow) {
 
 };
 
+Apple AppleGenerator::create() {
+	int resultX = rand() % maxWidth;
+	int resultY = rand() % maxHeight;
+	position p;
+	p.x = resultX;
+	p.y = resultY;
+	Apple a(p);
+
+	return a;
+}
+AppleGenerator::AppleGenerator(int width, int height) {
+	maxWidth = width;
+	maxHeight = height;
+}
+
 void Snake::changeDir(direction d) {
 		dir = d;
 	}
@@ -88,5 +103,6 @@ bool Snake::isBodyHere(position p) const {
 	}
 	return false;
 }
+
 
 
